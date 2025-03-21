@@ -11,11 +11,11 @@ from selector_group_chat_test_00 import worker_agents, planner
 
 @workflow(name=__file__)
 async def main(input_message: str):
- 
-    # plannerとagent_callerによるグループチャットを作成
+     
     model_client = create_model_client()
     agents = worker_agents + [planner]
 
+    # SelectorGroupChatを作成
     chat = SelectorGroupChat(
             agents,
             model_client=model_client,

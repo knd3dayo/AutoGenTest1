@@ -55,7 +55,7 @@ async def main(input_message: str):
     model_client = create_model_client()
     agents = worker_agents + [planner]
     
-    # plannerとagent_callerによるグループチャットを作成
+    # selector_funcでエージェント選択処理をカスタマイズ
 
     def selector_func(messages: Sequence[AgentEvent | ChatMessage]) -> str | None:
         # 最後のメッセージがplannerからのものでない場合、plannerを選択
@@ -69,6 +69,7 @@ async def main(input_message: str):
 
             return selected_agent_name
 
+    # SelectorGroupChatを作成。selector_funcを設定する。
     chat = SelectorGroupChat(
             agents,
             model_client=model_client,

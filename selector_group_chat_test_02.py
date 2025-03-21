@@ -16,8 +16,8 @@ async def main(input_message: str):
     # モデルクライアントを作成
     model_client = create_model_client()
     agents = worker_agents + [planner]
-    
-    # plannerとagent_callerによるグループチャットを作成
+
+    # selector_promptでエージェント選択処理をカスタマイズ
     selector_prompt: str = """
     以下の会話は、ユーザーからの指示に基づいてplannerが計画したタスクを遂行するチームのチャットです。
     チームのメンバー名とその役割は次の通りです。{roles} 
@@ -28,7 +28,7 @@ async def main(input_message: str):
         {history}
 
     """ 
-    
+    # SelectorGroupChatを作成。selector_promptを設定する。
     chat = SelectorGroupChat(
             agents,
             model_client=model_client,
@@ -59,3 +59,4 @@ if __name__ == '__main__':
     init_trace()
     # メイン処理を実行
     asyncio.run(main(input_message))
+    
