@@ -1,0 +1,5 @@
+python-dotenv
+openai
+autogen-agentchat
+autogen-ext
+traceloop-sdk
