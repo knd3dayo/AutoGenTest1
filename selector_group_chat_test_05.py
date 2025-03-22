@@ -22,7 +22,7 @@ async def main(input_message: str):
     planner = create_agent(
         name="planner",
         description="ユーザーの要求を達成するための計画を考えて、各エージェントと協力して要求を達成しますト",
-        system_message=""""
+        system_message=f""""
         ユーザーの要求を達成するための計画を考えて、各エージェントと協力して要求を達成します
         - エージェントが以下の役割を担当します。  
         {agents_description}
